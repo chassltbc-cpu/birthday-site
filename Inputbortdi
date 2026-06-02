@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Happy Birthday!</title>
+    <style>
+        body {
+            font-family: Georgia, serif;
+            text-align: center;
+            background: linear-gradient(to bottom, #fff, #ffe6ee);
+            padding: 50px;
+        }
+
+        h1 {
+            font-size: 4rem;
+            color: #3d1f2b;
+        }
+
+        button {
+            padding: 12px 24px;
+            border-radius: 30px;
+            border: 1px solid #d97b9a;
+            background: white;
+            cursor: pointer;
+        }
+
+        #message {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            display: none;
+        }
+
+        img {
+            width: 250px;
+            border-radius: 15px;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Happy 18th Birthday, Gaby! ✨</h1>
+
+    <button onclick="playSong()">🎵 Play Our Song</button>
+
+    <p id="message">
+        Wishing you happiness, success, and endless memories. 🎂💖
+    </p>
+
+    <div>
+        <img src="photo1.jpg" alt="Memory 1">
+        <img src="photo2.jpg" alt="Memory 2">
+    </div>
+
+    <audio id="song">
+        <source src="song.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        function playSong() {
+            const song = document.getElementById("song");
+            const message = document.getElementById("message");
+
+            song.play();
+            message.style.display = "block";
+
+            createConfetti();
+        }
+
+        function createConfetti() {
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement("div");
+
+                confetti.innerHTML = "🎉";
+                confetti.style.position = "fixed";
+                confetti.style.left = Math.random() * 100 + "vw";
+                confetti.style.top = "-20px";
+                confetti.style.fontSize = "24px";
+
+                document.body.appendChild(confetti);
+
+                let pos = -20;
+
+                const fall = setInterval(() => {
+                    pos += 5;
+                    confetti.style.top = pos + "px";
+
+                    if (pos > window.innerHeight) {
+                        clearInterval(fall);
+                        confetti.remove();
+                    }
+                }, 20);
+            }
+        }
+    </script>
+
+</body>
+</html>
